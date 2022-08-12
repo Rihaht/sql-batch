@@ -1,0 +1,71 @@
+use org
+
+create table title
+(
+worker_id int,
+worker_title varchar(20),
+affected_from datetime
+)
+select * from title
+select * from bonus
+select * from worker
+alter table worker add joining_date datetime
+--complete name
+select concat( first_name,last_name )as Complete_name from worker
+--ascending
+select * from worker order by first_name asc
+--between
+select * from worker where salary  between 100000 and 500000
+--average
+select avg(salary)as 'aveersalary' from worker
+--descending
+select * from worker order by worker_id desc
+--clone
+select * into clone from worker
+--simple interset
+create function inter(@p @r @t)
+returns int
+as
+begin
+return(@p * @r* @t /100);
+end
+
+
+
+--DML trigger
+
+create trigger trg_dml
+on worker
+FOR UPDATE
+as
+begin
+	print 'You cannot perform DML Operations'
+	rollback transaction --undo the DML Statements
+end
+update worker set worker_id =7 where worker_id=8
+drop trigger trg_dml
+--index
+create index idx_bonusdate on bonus(bonus_date)
+
+
+--join
+combine rows from 2 or more tables based on a common column
+types
+inner,left,right,full,cross,self
+
+--stored procedures
+group of DML statements are stored in a single unit which writing the query  again and again .
+--function
+function used a perform task in sql
+
+--clustered indexes
+whenever primary key cheated automatically cluster index is created
+
+--fliter 
+it used to fliter in a table in fliter condition
+
+
+--rollback
+undo the index qurey
+--commit
+save the transition
